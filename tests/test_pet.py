@@ -84,19 +84,19 @@ class TestPet:
                 "status": "available"
             }
 
-            with allure.step("Отправка запроса на создание питомца"):
-                response = requests.post(url=f"{BASE_URL}/pet", json=payload)
-                response_json = response.json()
+        with allure.step("Отправка запроса на создание питомца"):
+            response = requests.post(url=f"{BASE_URL}/pet", json=payload)
+            response_json = response.json()
 
-            with allure.step("Проверка статуса ответа и валидация JSON-схемы"):
-                assert response.status_code == 200
-                jsonschema.validate(response_json, PET_SCHEMA)
+        with allure.step("Проверка статуса ответа и валидация JSON-схемы"):
+            assert response.status_code == 200
+            jsonschema.validate(response_json, PET_SCHEMA)
 
-            with allure.step("Проверка параметров питомца в ответе"):
-                assert response_json['id'] == payload['id'], "id питомца не совпадает с ожидаемым"
-                assert response_json['name'] == payload['name'], "имя питомца не совпадает с ожидаемым"
-                assert response_json['category']['id'] == payload['category']['id'], "ID категории питомца не совпадает с ожидаемым"
-                assert response_json['category']['name'] == payload['category']['name'], "Название категории питомца не совпадает с ожидаемым"
-                assert response_json['photoUrls'] == payload['photoUrls'], "фотоурлы питомца не совпадает с ожидаемым"
-                assert response_json['tags'] == payload['tags'], "теги питомца не совпадает с ожидаемым"
-                assert response_json['status'] == payload['status'], "статус питомца не совпадает с ожидаемым"
+        with allure.step("Проверка параметров питомца в ответе"):
+            assert response_json['id'] == payload['id'], "id питомца не совпадает с ожидаемым"
+            assert response_json['name'] == payload['name'], "имя питомца не совпадает с ожидаемым"
+            assert response_json['category']['id'] == payload['category']['id'], "ID категории питомца не совпадает с ожидаемым"
+            assert response_json['category']['name'] == payload['category']['name'], "Название категории питомца не совпадает с ожидаемым"
+            assert response_json['photoUrls'] == payload['photoUrls'], "фотоурлы питомца не совпадает с ожидаемым"
+            assert response_json['tags'] == payload['tags'], "теги питомца не совпадает с ожидаемым"
+            assert response_json['status'] == payload['status'], "статус питомца не совпадает с ожидаемым"
