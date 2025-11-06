@@ -183,8 +183,3 @@ class TestPet:
             assert response.status_code == expected_status_code
             assert isinstance(response.json(), expected_response_type)
 
-
-
-
-
-
